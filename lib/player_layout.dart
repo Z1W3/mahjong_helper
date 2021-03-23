@@ -1,43 +1,76 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/size_extension.dart';
 
 class PlayerList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _PlayerListState();
+    return PlayerListState();
   }
 }
 
-class _PlayerListState extends State<PlayerList> {
+class PlayerListState extends State<PlayerList> {
+  double m_height = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: Player(
-          username: "1号",
-          color: Colors.redAccent,
-          position: Position.EAST,
-        )),
-        Expanded(
-            child: Player(
-          username: "2号",
-          color: Colors.indigo,
-          position: Position.SOUTH,
-        )),
-        Expanded(
-            child: Player(
-          username: "3号",
-          color: Colors.amber[700],
-          position: Position.WEST,
-        )),
-        Expanded(
-            child: Player(
-          username: "4号",
-          color: Colors.greenAccent[700],
-          position: Position.NORTH,
-        )),
-      ],
+    final double statusBar = MediaQueryData.fromWindow(window).padding.top;
+    final double topPadding = MediaQuery.of(context).padding.top;
+    final double bottomPadding = MediaQuery.of(context).padding.bottom;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final height = screenHeight - bottomPadding - topPadding - statusBar;
+    return SliverToBoxAdapter(
+      child: SizedBox.fromSize(
+        child: Align(
+          alignment: Alignment.center,
+          child: SizedBox.fromSize(
+            size: Size(double.infinity, height * 0.6),
+            child: Column(
+              children: [
+                Expanded(
+                    child: Row(
+                  children: [
+                    Expanded(
+                        child: Player(
+                      username: "1号",
+                      color: Colors.redAccent,
+                      position: Position.EAST,
+                    )),
+                    Expanded(
+                      child: Player(
+                        username: "2号",
+                        color: Colors.indigo,
+                        position: Position.SOUTH,
+                      ),
+                    ),
+                  ],
+                )),
+                Expanded(
+                    child: Row(
+                  children: [
+                    Expanded(
+                      child: Player(
+                        username: "3号",
+                        color: Colors.amber[700],
+                        position: Position.WEST,
+                      ),
+                    ),
+                    Expanded(
+                      child: Player(
+                        username: "4号",
+                        color: Colors.greenAccent[700],
+                        position: Position.NORTH,
+                      ),
+                    ),
+                  ],
+                )),
+              ],
+            ),
+          ),
+        ),
+        size: Size(double.infinity, height),
+      ),
     );
   }
 }
@@ -80,7 +113,6 @@ class _PlayerState extends State {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230.r,
       child: Padding(
         padding: EdgeInsets.all(10.r),
         child: Stack(

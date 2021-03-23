@@ -18,16 +18,17 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           body: SafeArea(
-            child: Align(
-              alignment: Alignment(0.0, -0.3),
-              child: SizedBox.fromSize(
-                child: Align(
-                    alignment: Alignment.center,
-                    child: MainPage()
-                ),
-                size: Size(double.maxFinite, 700.h),
-              ),
-            ),
+            child: StartGame(),
+            // child: Align(
+            //   alignment: Alignment(0.0, -0.3),
+            //   child: SizedBox.fromSize(
+            //     child: Align(
+            //         alignment: Alignment.center,
+            //         child: MainPage()
+            //     ),
+            //     size: Size(double.maxFinite, 700.h),
+            //   ),
+            // ),
           ),
         ),
       ),
@@ -67,38 +68,41 @@ class _MainPageStatus extends State<MainPage> {
             ),
           ),
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 100.w, right: 100.w),
-              child: Align(
-                alignment: Alignment.center,
-                child: SizedBox.fromSize(
-                  child: Material(
-                    child: Ink(
-                      decoration: BoxDecoration(
-                        color: Colors.indigoAccent,
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(30.r)),
-                      ),
-                      child: InkWell(
-                        onTap: () {},
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(30.r)),
-                        splashColor: Colors.deepOrange,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "继续",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 50.sp,
-                              fontWeight: FontWeight.w400,
+            child: Opacity(
+              opacity: 0,
+              child: Container(
+                padding: EdgeInsets.only(left: 100.w, right: 100.w),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SizedBox.fromSize(
+                    child: Material(
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(30.r)),
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(30.r)),
+                          splashColor: Colors.deepOrange,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "继续",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 50.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
+                    size: Size(double.maxFinite, 100.h),
                   ),
-                  size: Size(double.maxFinite, 100.h),
                 ),
               ),
             ),
